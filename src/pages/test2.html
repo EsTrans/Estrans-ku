@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="box">
+    <li v-for="item in datalist" :key="item">
+      {{item}}
+    </li>
+    <input type="text" @input="placeinput" v-model="hatext">
+    <p>{{ hatext }}</p>
+  </div>
+
+
+  <script>
+    var vm = new Vue({
+      el: "#box",
+      data: {
+        datalist: ["aab", "aac", "bbc", "ccc", "acb"],
+        finallist: ["aab", "aac", "bbc", "ccc", "acb"],
+        hatext: ""
+      },
+      methods: {
+        placeinput() {
+          console.log(this.hatext);
+          if (this.hatext) {
+            this.datalist = this.finallist.filter(item => item.indexOf(this.hatext) != -1)
+          } else {
+            this.datalist = ["aab", "aac", "bbc", "ccc", "acb"]
+          }
+
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

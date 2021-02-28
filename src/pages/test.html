@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="box">
+    <button @click="click1()">事件绑定</button>
+    <h1 id="title">{{ message }}</h1>
+    <div v-html="ht"></div>
+    <p v-show="show1">v-show显示与隐藏</p>
+    <div v-if="ifs">v-if动态显示与删除</div>
+    <p :class="classobj">动态绑定class</p>
+    <p :style="'background:' +(show1?'red':'blue')">动态切换style的三目写法</p>
+    <p :style="styleobj">动态切换style的对象写法</p>
+    <p :style="stylearr">动态切换style的对数组写法</p>
+
+  </div>
+
+  <script>
+    var es = new Vue({
+      el: "#box",
+      data: {
+        message: "helloword",
+        show1: true,
+        ht: "<b>哈哈啊</b>",
+        ifs: true,
+        classobj: {
+          a: true,
+          b: false
+        },
+        styleobj: {
+          color: "yellow",
+        },
+        stylearr: [{
+          color: "pink"
+        }]
+      },
+      methods: {
+        click1() {
+          this.show1 = !this.show1
+          this.ifs = !this.ifs
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
